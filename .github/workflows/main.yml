@@ -33,22 +33,20 @@ jobs:
         wget https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip -O android-sdk.zip
         unzip android-sdk.zip -d $HOME/android-sdk
 
-        # Create the necessary directory structure
+        # Create the necessary directory structure for SDK tools
         mkdir -p $HOME/android-sdk/cmdline-tools/latest
 
-        # Move the contents, not the 'latest' folder
+        # Move the contents of cmdline-tools into the latest directory
         mv $HOME/android-sdk/cmdline-tools/* $HOME/android-sdk/cmdline-tools/latest/
 
+        # Set environment variables for SDK and NDK
         export ANDROID_HOME=$HOME/android-sdk
         export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
 
-        # Check if SDK is extracted and the directory is set correctly
-        ls -l $HOME/android-sdk
-
-        # Install the required SDK components
+        # Install necessary SDK components
         yes | sdkmanager --sdk_root=$HOME/android-sdk "platform-tools" "platforms;android-29" "build-tools;29.0.3" "ndk;21.4.7075529"
 
-        # Verify installation
+        # Verify the SDK installation
         sdkmanager --list
 
     - name: Build APK
