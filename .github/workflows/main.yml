@@ -46,9 +46,14 @@ jobs:
 
         # Install platform-tools, build-tools (with AIDL), and necessary NDK version
         yes | sdkmanager --sdk_root=$HOME/android-sdk "platform-tools" "platforms;android-29" "build-tools;30.0.3" "ndk;21.4.7075529"
+
+        # Check that AIDL is available
+        yes | sdkmanager --sdk_root=$HOME/android-sdk "build-tools;30.0.3" "platform-tools" "cmdline-tools" "ndk;21.4.7075529"
         
-        # Verify installation
+        # Verify SDK setup
         sdkmanager --list
+        echo $PATH
+        echo "SDK setup complete!"
 
     - name: Check AIDL installation
       run: |
