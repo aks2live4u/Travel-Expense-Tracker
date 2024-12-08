@@ -35,9 +35,11 @@ jobs:
         export ANDROID_HOME=$HOME/android-sdk
         export PATH=$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/platform-tools:$PATH
 
-        # Install required SDK components
-        yes | sdkmanager --licenses
-        sdkmanager "platform-tools" "platforms;android-29" "build-tools;29.0.3" "ndk;21.4.7075529"
+        # Check if SDK is extracted and the directory is set correctly
+        ls -l $HOME/android-sdk
+
+        # Specify SDK root explicitly
+        yes | sdkmanager --sdk_root=$HOME/android-sdk "platform-tools" "platforms;android-29" "build-tools;29.0.3" "ndk;21.4.7075529"
 
         # Verify installation
         sdkmanager --list
@@ -51,4 +53,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Expense-Tracker-APK
-        path: /home/runner/work/Expense-Tracker/Expense-Tracker/bin/*.apk
+        path: /home/runner/work/Expense-Tracker/
