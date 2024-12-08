@@ -49,11 +49,11 @@ jobs:
 
     - name: Build APK
       run: |
-        cd /home/runner/work/Expense-Tracker/Expense-Tracker
+        cd $GITHUB_WORKSPACE  # Navigate to the repository's workspace directory
         buildozer android debug
 
     - name: Upload APK as artifact
       uses: actions/upload-artifact@v3
       with:
         name: Expense-Tracker-APK
-        path: /home/runner/work/Expense-Tracker/Expense-Tracker/bin/*.apk
+        path: $GITHUB_WORKSPACE/bin/*.apk
