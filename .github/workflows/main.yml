@@ -33,7 +33,10 @@ jobs:
         wget https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip -O android-sdk.zip
         unzip android-sdk.zip -d $HOME/android-sdk
 
-        # Install platform-tools and build-tools directly without creating directories
+        # Add sdkmanager to PATH
+        export PATH=$HOME/android-sdk/cmdline-tools/bin:$PATH
+
+        # Install platform-tools and build-tools directly
         yes | sdkmanager --sdk_root=$HOME/android-sdk "platform-tools" "platforms;android-29" "build-tools;29.0.3" "ndk;21.4.7075529"
 
         # Verify installation
