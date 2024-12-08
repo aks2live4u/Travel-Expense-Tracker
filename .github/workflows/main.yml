@@ -36,7 +36,7 @@ jobs:
         # Create the necessary directory structure
         mkdir -p $HOME/android-sdk/cmdline-tools/latest
 
-        # Move extracted tools into the 'latest' folder
+        # Move the contents, not the 'latest' folder
         mv $HOME/android-sdk/cmdline-tools/* $HOME/android-sdk/cmdline-tools/latest/
 
         export ANDROID_HOME=$HOME/android-sdk
