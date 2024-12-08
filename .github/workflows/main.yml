@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 120  # Set timeout to 2 hours
 
     steps:
     - name: Checkout code
@@ -21,6 +22,7 @@ jobs:
 
     - name: Install dependencies
       run: |
+        echo "Installing necessary dependencies..."
         sudo apt update
         sudo apt install -y openjdk-11-jdk python3-pip build-essential libssl-dev libffi-dev libsqlite3-dev zlib1g-dev unzip wget
         pip install --upgrade pip
@@ -29,6 +31,7 @@ jobs:
 
     - name: Set up Android SDK and NDK
       run: |
+        echo "Setting up Android SDK and NDK..."
         # Install Android Command Line Tools
         wget https://dl.google.com/android/repository/commandlinetools-linux-8092744_latest.zip -O android-sdk.zip
         unzip android-sdk.zip -d $HOME/android-sdk
@@ -49,6 +52,7 @@ jobs:
 
     - name: Build APK
       run: |
+        echo "Building APK with Buildozer..."
         cd $GITHUB_WORKSPACE  # Navigate to the repository's workspace directory
         buildozer android debug
 
