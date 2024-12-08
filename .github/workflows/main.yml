@@ -44,8 +44,11 @@ jobs:
         # Add sdkmanager to PATH
         export PATH=$HOME/android-sdk/cmdline-tools/latest/bin:$PATH
 
-        # Install platform-tools, build-tools (including AIDL), and necessary NDK version
+        # Install platform-tools, build-tools (with AIDL), and necessary NDK version
         yes | sdkmanager --sdk_root=$HOME/android-sdk "platform-tools" "platforms;android-29" "build-tools;30.0.3" "ndk;21.4.7075529"
+        
+        # Install AIDL separately to ensure it's available
+        yes | sdkmanager --sdk_root=$HOME/android-sdk "build-tools;30.0.3"
 
         # Verify installation
         sdkmanager --list
